@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("api/yookassa")
+@RequestMapping("/api/yookassa")
 @RequiredArgsConstructor
 public class BackendController {
 

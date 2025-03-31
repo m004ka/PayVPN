@@ -16,12 +16,12 @@ public class PaymentRequest {
     private final Confirmation confirmation = new Confirmation();
     private final Metadata metadata;
 
-    public static Object create(double amount, String description, String userEmail, Long orderId) {
+    public static Object create(double amount, String description, String userEmail, String orderId) {
         return new PaymentRequest(
                 new Amount(amount),
                 description,
                 new Receipt(new Customer(userEmail), List.of(new Item(new Amount(amount)))),
-                new Metadata(orderId.toString())
+                new Metadata(orderId)
         );
     }
 }

@@ -17,5 +17,6 @@ public class PaymentDTO {
 
     private Boolean receipt;
 
-    private Long orderId;
+    private String order_id;
+
 }
