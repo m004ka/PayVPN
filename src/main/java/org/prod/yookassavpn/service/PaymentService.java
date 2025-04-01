@@ -22,21 +22,18 @@ public class PaymentService {
     public PaymentResponse createPayment(double amount, String description, String userEmail, String orderId) {
         var request = PaymentRequest.create(amount, description, userEmail, orderId);
 
-        // Генерируем уникальный ключ идемпотентности
         String idempotenceKey = UUID.randomUUID().toString();
-
         ObjectMapper objectMapper = new ObjectMapper();
         String requestBody = objectMapper.writeValueAsString(request);
         System.out.println("Отправляемый JSON: " + requestBody);
         System.out.println("Idempotence-Key: " + idempotenceKey);
 
         return yooKassaClient.post()
-                .header("Idempotence-Key", idempotenceKey) // Добавляем заголовок
+                .header("Idempotence-Key", idempotenceKey)
                 .body(request)
                 .retrieve()
                 .body(PaymentResponse.class);
     }
-
 
 
     public PaymentResponse getPayment(PaymentDTO paymentDTO) {
